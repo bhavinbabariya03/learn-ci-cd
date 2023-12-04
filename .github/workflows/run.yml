@@ -14,7 +14,7 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v2
         with:
-          name: Dist
+          name: my-artifact
           path: dist
 
       - name: Set up Node.js

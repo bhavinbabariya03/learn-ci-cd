@@ -24,5 +24,5 @@ jobs:
       - name: Archive Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: Dist
+          name: my-artifact
           path: dist
