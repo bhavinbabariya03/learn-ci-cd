@@ -1,0 +1,12 @@
+{
+  "name": "learn-ci-cd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/bhavinbabariya03/learn-ci-cd.git",
+  "author": "Bhavin Babariya <bhavinbabariya03@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  }
+}

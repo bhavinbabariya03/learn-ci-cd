@@ -1,0 +1,29 @@
+name: Deploy Using Artifacts
+
+on:
+  workflow_run:
+    workflows: ["Build and Publish Artifacts"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: Dist
+          path: dist
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Deploy Application
+        run: npm run start
