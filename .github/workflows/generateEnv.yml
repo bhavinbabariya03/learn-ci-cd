@@ -1,0 +1,37 @@
+name: Fetch and Store Secrets
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  fetch-store-secrets:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Fetch secrets and store in .env
+      run: |
+        env=$(aws secretsmanager get-secret-value --secret-id FirstSecretManager --query SecretString --output text)
+        username=$(echo "$env" | jq -r '.username')
+        password=$(echo "$env" | jq -r '.password')
+
+        echo "USERNAME=$username" > .env
+        echo "PASSWORD=$password" >> .env
+
+        echo "Username: $username"
+        echo "Password: $password"
+
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    - name: Use secrets in the next step
+      run: |
+        echo "Using secrets from .env file:"
+        cat .env
+
+    # Add more steps as needed
