@@ -1,9 +1,6 @@
 name: Fetch and Store Secrets
 
-on:
-  push:
-    branches:
-      - main
+on: workflow_dispatch
 
 jobs:
   fetch-store-secrets:
