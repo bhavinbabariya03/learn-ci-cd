@@ -32,3 +32,13 @@ jobs:
           sum_result: ${{ needs.calculate_sum.outputs.sum_result }}
         run: |
           echo "The sum is: $sum_result"
+
+      - name: Set color
+        id: color-selector
+        run: echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
+        
+      - name: Get color
+        env:
+          SELECTED_COLOR: ${{ steps.color-selector.outputs.SELECTED_COLOR }}
+        run: echo "The selected color is $SELECTED_COLOR"
+
