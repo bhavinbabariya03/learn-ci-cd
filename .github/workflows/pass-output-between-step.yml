@@ -19,7 +19,7 @@ jobs:
           NUM2=7
           SUM=$((NUM1 + NUM2))
           echo "SUM=$SUM"
-          echo "RESULT=$SUM" >> "$GITHUB_OUTPUT"
+          echo "RESULT=$SUM" >> "$GITHUB_ENV"
 
   print_result:
     runs-on: ubuntu-latest
@@ -28,17 +28,13 @@ jobs:
 
     steps:
       - name: Display Sum Result
-        env: 
-          RESULT: ${{ needs.calculate_sum.outputs.RESULT }}
         run: |
           echo "The sum is: $RESULT"
 
       - name: Set color
         id: color-selector
-        run: echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
+        run: echo "SELECTED_COLOR=green" >> "$GITHUB_ENV"
         
       - name: Get color
-        env:
-          SELECTED_COLOR: ${{ steps.color-selector.outputs.SELECTED_COLOR }}
         run: echo "The selected color is $SELECTED_COLOR"
 
