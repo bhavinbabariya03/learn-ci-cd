@@ -1,0 +1,32 @@
+name: Add Numbers and Print Result
+
+on: workflow_dispatch
+
+jobs:
+  calculate_sum:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
+      - name: Calculate Sum
+        id: calculate_sum
+        run: |
+          NUM1=5
+          NUM2=7
+          SUM=$((NUM1 + NUM2))
+          echo "SUM=$SUM"
+          echo "::set-output name=sum_result::$SUM"
+
+  print_result:
+    runs-on: ubuntu-latest
+
+    needs: calculate_sum
+
+    steps:
+      - name: Display Sum Result
+        run: |
+          echo "The sum is: ${{ needs.calculate_sum.outputs.sum_result }}"
