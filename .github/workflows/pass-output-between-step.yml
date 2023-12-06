@@ -19,7 +19,7 @@ jobs:
           NUM2=7
           SUM=$((NUM1 + NUM2))
           echo "SUM=$SUM"
-          echo "sum_result=$SUM" >> "$GITHUB_OUTPUT"
+          echo "RESULT=$SUM" >> "$GITHUB_OUTPUT"
 
   print_result:
     runs-on: ubuntu-latest
@@ -29,9 +29,9 @@ jobs:
     steps:
       - name: Display Sum Result
         env: 
-          sum_result: ${{ needs.calculate_sum.outputs.sum_result }}
+          RESULT: ${{ needs.calculate_sum.outputs.RESULT }}
         run: |
-          echo "The sum is: $sum_result"
+          echo "The sum is: $RESULT"
 
       - name: Set color
         id: color-selector
