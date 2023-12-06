@@ -19,7 +19,7 @@ jobs:
           NUM2=7
           SUM=$((NUM1 + NUM2))
           echo "SUM=$SUM"
-          echo "::set-output name=sum_result::$SUM"
+          echo "sum_result=$SUM" >> "$GITHUB_OUTPUT"
 
   print_result:
     runs-on: ubuntu-latest
