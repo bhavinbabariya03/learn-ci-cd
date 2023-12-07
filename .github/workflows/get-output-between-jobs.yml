@@ -1,0 +1,24 @@
+name: Get output values between jobs
+
+on: workflow_dispatch
+
+
+jobs:
+  my_job:
+    runs-on: ubuntu-latest
+    outputs:
+      # Map the step outputs to job outputs
+      my_var: ${{steps.my_step.outputs.my_var}}
+    steps:
+      - name: "Example output creation"
+        id: "my_step"
+        run: |
+          my_var="Hello World!!"
+          echo "Output [$my_var]"
+          echo "my_var=$my_var" >> $GITHUB_OUTPUT  
+        
+  my_second_job:
+    needs: my_job
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo my_var [${{needs.my_job.outputs.my_var}}]
