@@ -38,3 +38,14 @@ jobs:
       - name: Get color
         run: echo "The selected color is $SELECTED_COLOR"
 
+      - name: "Example output creation"
+        id: "my_step"
+        run: |
+          my_var="Hello World"
+          echo "Output [$my_var]"
+          echo "my_var=$my_var" >> $GITHUB_OUTPUT 
+
+      - name: "Example output call between steps"
+        run: |
+              echo "Output [${{steps.my_step.outputs.my_var}}]"
+
