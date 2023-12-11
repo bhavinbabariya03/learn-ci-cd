@@ -14,8 +14,10 @@ jobs:
         if: ${{ success() }}
         run: |
           echo "Job succeeded!!"
+          curl --location 'https://chat.googleapis.com/v1/spaces/AAAAEFWlcAM/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=dQVE1bh74oB27_okAsxgPBJkD-KF85xOvsm7uzSKQvQ' --header 'Content-Type: application/json' --header 'Cookie: COMPASS=dynamite-integration=CgAQ7e21qwYaUQAJa4lXjVCprTfVDPHdM_NuieAqWm2rDLlQwKspAL7MvG3s7hXeU-AO3QtfAejCykbYkv3nQrmZccrUvLfxllj4kFj2j5RsqJjuVuuSTFU9qTAB' --data '{ "text":"Handle Success or Failure Event is Successful" }'
 
       - name: Handle Failure
         if: ${{ failure() }}
         run: |
           echo "Job failed!!"
+          curl --location 'https://chat.googleapis.com/v1/spaces/AAAAEFWlcAM/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=dQVE1bh74oB27_okAsxgPBJkD-KF85xOvsm7uzSKQvQ' --header 'Content-Type: application/json' --header 'Cookie: COMPASS=dynamite-integration=CgAQ7e21qwYaUQAJa4lXjVCprTfVDPHdM_NuieAqWm2rDLlQwKspAL7MvG3s7hXeU-AO3QtfAejCykbYkv3nQrmZccrUvLfxllj4kFj2j5RsqJjuVuuSTFU9qTAB' --data '{ "text":"Handle Success or Failure Event is Failed" }'
