@@ -7,17 +7,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check Workflow Status
-        run: echo "${{ github.event.workflow_run.conclusion }}"
+      - name: Print Hello
+        run: echo "Hello Guys!!"
 
       - name: Handle Success
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        if: ${{ success() }}
         run: |
-          echo "Workflow succeeded. Do something..."
-          # Add your actions for success here
+          echo "Job succeeded!!"
 
       - name: Handle Failure
-        if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+        if: ${{ failure() }}
         run: |
-          echo "Workflow failed. Do something else..."
-          # Add your actions for failure here
+          echo "Job failed!!"

@@ -1,0 +1,21 @@
+name: Notify on Job Failure
+
+on:
+  workflow_run:
+    workflows: ["Your Workflow Name"]
+    types:
+      - completed
+
+jobs:
+  notify_on_failure:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check Job Status
+        run: echo "Job Status: ${{ github.event.workflow_run.conclusion }}"
+
+      - name: Notify on Failure
+        if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+        run: |
+          echo "Job failed. Notifying URL..."
+          curl -X POST -d '{"status": "failure"}' https://your-api-url/failure-endpoint
