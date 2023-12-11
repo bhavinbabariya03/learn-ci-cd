@@ -1,8 +1,8 @@
-name: Notify on Job Failure
+name: Notify on Job Success or Failure
 
 on:
   workflow_run:
-    workflows: ["Your Workflow Name"]
+    workflows: ["Fetch and Store Secrets"]
     types:
       - completed
 
@@ -18,4 +18,10 @@ jobs:
         if: ${{ github.event.workflow_run.conclusion == 'failure' }}
         run: |
           echo "Job failed. Notifying URL..."
-          curl -X POST -d '{"status": "failure"}' https://your-api-url/failure-endpoint
+          curl --location 'https://chat.googleapis.com/v1/spaces/AAAAEFWlcAM/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=dQVE1bh74oB27_okAsxgPBJkD-KF85xOvsm7uzSKQvQ' --header 'Content-Type: application/json' --header 'Cookie: COMPASS=dynamite-integration=CgAQ7e21qwYaUQAJa4lXjVCprTfVDPHdM_NuieAqWm2rDLlQwKspAL7MvG3s7hXeU-AO3QtfAejCykbYkv3nQrmZccrUvLfxllj4kFj2j5RsqJjuVuuSTFU9qTAB' --data '{ "text":"Fetch and Store Secrets is Successful" }'
+
+      - name: Notify on Success
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        run: |
+          echo "Job Successful. Notifying URL..."
+          curl --location 'https://chat.googleapis.com/v1/spaces/AAAAEFWlcAM/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=dQVE1bh74oB27_okAsxgPBJkD-KF85xOvsm7uzSKQvQ' --header 'Content-Type: application/json' --header 'Cookie: COMPASS=dynamite-integration=CgAQ7e21qwYaUQAJa4lXjVCprTfVDPHdM_NuieAqWm2rDLlQwKspAL7MvG3s7hXeU-AO3QtfAejCykbYkv3nQrmZccrUvLfxllj4kFj2j5RsqJjuVuuSTFU9qTAB' --data '{ "text":"Fetch and Store Secrets is Failed" }'
