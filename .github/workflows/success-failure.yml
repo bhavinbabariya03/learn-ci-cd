@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: Check Workflow Status
-        run: echo "Workflow Status: ${{ github.event.workflow_run.conclusion }}"
+        run: echo "${{ github.event.workflow_run.conclusion }}"
 
       - name: Handle Success
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
