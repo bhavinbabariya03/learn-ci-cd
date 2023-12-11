@@ -1,4 +1,4 @@
-name: Handle Success or Failure
+name: Handle Success or Failure Event
 
 on: workflow_dispatch
 
