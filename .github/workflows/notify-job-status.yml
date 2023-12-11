@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Check Job Status
-        run: echo "Job Status: ${{ github.event.workflow_run.conclusion }}"
+        run: echo "${{ github.event.workflow_run.conclusion }}"
 
       - name: Notify on Failure
         if: ${{ github.event.workflow_run.conclusion == 'failure' }}
