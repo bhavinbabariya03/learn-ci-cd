@@ -1,4 +1,4 @@
-name: Build and Publish Artifacts
+name: Upload Artifacts
 
 on: workflow_dispatch
 
@@ -20,9 +20,6 @@ jobs:
 
       - name: Build Application
         run: npm run build
-
-      - name: list dist folder
-        run: ls dist
 
       - name: Archive Artifacts
         uses: actions/upload-artifact@v2
