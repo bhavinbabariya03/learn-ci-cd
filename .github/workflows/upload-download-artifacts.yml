@@ -21,6 +21,12 @@ jobs:
       - name: Build Application
         run: npm run build
 
+      - name: Run Test case
+        run: npm test
+
+      - name: Run Test case coverage
+        run: npm run test:coverage
+
       - name: list dist folder
         run: ls dist
 
@@ -29,6 +35,12 @@ jobs:
         with:
           name: my-dist-artifact
           path: dist
+
+      - name: upload test coverage report to artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: coverage
 
   run:
     runs-on: ubuntu-latest
