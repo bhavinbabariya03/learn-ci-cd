@@ -24,6 +24,9 @@ jobs:
       - name: list dist folder
         run: ls dist
 
+      - name: Print Workflow ID
+        run: echo "${{ github.run_id }}"
+
       - name: Archive Artifacts
         uses: actions/upload-artifact@v2
         with:
