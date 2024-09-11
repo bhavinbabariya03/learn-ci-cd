@@ -1,3 +1,3 @@
 import { add } from "./add";
 
-console.log("result : ", add(50, 40));
+console.log("resultt : ", add(50, 40));
