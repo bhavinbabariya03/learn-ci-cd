@@ -2,6 +2,8 @@ name: GitHub Package Demo
 run-name: Upload packages
 on:
   push:
+    branches:
+      - main
     paths:
       - packages/**
 
