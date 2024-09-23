@@ -5,7 +5,10 @@ on:
     branches:
       - main
     paths:
-      - "!packages"
+      - src
+      - terraform
+      - package.json
+      - package-lock.json
 
 jobs:
   Explore-GitHub-Actions:
