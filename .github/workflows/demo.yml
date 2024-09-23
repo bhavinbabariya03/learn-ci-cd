@@ -5,8 +5,8 @@ on:
     branches:
       - main
     paths:
-      - src
-      - terraform
+      - src/**
+      - terraform/**
       - package.json
       - package-lock.json
 
