@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - !packages/**
 
 jobs:
   Explore-GitHub-Actions:
@@ -22,3 +20,11 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+        uses: tj-actions/changed-files@v44.0.1
+        with:
+          dir_names: true
+          json: false
+          quotepath: true
+      - name: "Set output of the changed directories"
+        id: set-output
+        run: echo "changed_directories=${{ steps.changed-files.outputs.all_modified_files }}"
