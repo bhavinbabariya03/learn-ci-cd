@@ -19,7 +19,7 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: "Use changed file package"
         uses: tj-actions/changed-files@v44.0.1
         with:
           dir_names: true
