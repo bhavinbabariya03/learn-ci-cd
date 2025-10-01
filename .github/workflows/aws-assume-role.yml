@@ -17,8 +17,17 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::335669581510:role/RoleForGithubCICD
+          role-to-assume: arn:aws:iam::102413378525:role/general-github-actions-role
           aws-region: ap-south-1
 
-      - name: Run AWS CLI command
+      - name: List all S3 buckets
         run: aws s3 ls
+
+      - name: List all Secrets in Secrets Manager
+        run: aws secretsmanager list-secrets --query "SecretList[].Name" --output table
+
+      - name: List all Lambda functions
+        run: aws lambda list-functions --query "Functions[].FunctionName" --output table
+
+      - name: List all DynamoDB tables
+        run: aws dynamodb list-tables --query "TableNames[]" --output table
